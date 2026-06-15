@@ -1,5 +1,5 @@
 {
-  "courseName": "結(MUSUBI)",
+  "courseName": "弓(KYU)",
   "dishes": [
     {
       "category": "Amuse",
@@ -97,5 +97,6 @@
       "selectCount": 1,
       "options": []
     }
-  ]
+  ],
+  "price": 6000
 }
