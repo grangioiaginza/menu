@@ -1,8 +1,8 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shippori+Mincho:wght@400;500;700;800&display=swap');
   .gioia-menu-wrapper { font-family: 'Playfair Display', 'Shippori Mincho', serif; color: #000000; text-align: center; width: 100%; max-width: 600px; margin: 0 auto; padding: 10px; }
-  /* 📜 ① コースタイトルの前に25pxのマージンをスマートに配置 */
-  .gioia-course-header { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 25px; margin-bottom: 40px; width: 100%; text-align: left; }
+  /* 📜 👑 ① 上部マージンは0px。コースタイトルの左側にのみ15pxの上品な余白を付与 */
+  .gioia-course-header { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 0px !important; margin-bottom: 40px; width: 100%; text-align: left; padding-left: 15px; box-sizing: border-box; }
   .gioia-course-title { font-size: 18px; font-weight: 400 !important; color: #000000; letter-spacing: 0.15em; }
   .gioia-title-en { font-size: 15px !important; font-family: 'Playfair Display', serif !important; }
   .gioia-menu-body { display: flex; flex-direction: column; gap: 35px; width: 100%; }
@@ -12,8 +12,8 @@
   .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 6px; text-align: left; width: fit-content; margin-left: auto; margin-right: auto; }
   .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; }
   .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; }
-  /* 📜 ② (税サ込) の後ろにも、寸分違わず同じ25pxのマージンを美しいシンメトリーで付与 */
-  .gioia-price-footer { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 40px; margin-bottom: 25px; width: 100%; text-align: right; }
+  /* 📜 👑 ② 下部マージンは0px。金額（税サ込）の右側にのみ、全く同じ15pxの余白を完全対称で配置 */
+  .gioia-price-footer { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 40px; margin-bottom: 0px !important; width: 100%; text-align: right; padding-right: 15px; box-sizing: border-box; }
   .gioia-course-price { font-size: 14px; font-weight: 500; color: #000000; letter-spacing: 0.08em; white-space: nowrap; }
   .gioia-price-tax { font-size: 12px; color: #8e8e8e; font-weight: normal; margin-left: 4px; }
   .gioia-menu-notice { font-size: 9px; color: #8e8e8e; font-weight: 400 !important; text-align: center; margin-top: 15px; width: 100%; letter-spacing: 0.05em; line-height: 1.6; }
