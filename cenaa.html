@@ -1,34 +1,49 @@
-<div style='font-family: inherit; color: #ffffff; text-align: left; width: 100%;'>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shippori+Mincho:wght@400;500;700;800&display=swap');
+  .gioia-menu-wrapper { font-family: 'Playfair Display', 'Shippori Mincho', serif; color: #000000; text-align: center; width: 100%; max-width: 600px; margin: 0 auto; padding: 10px; }
+  .gioia-course-header { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end; width: 100%; }
+  .gioia-course-title { font-size: 26px; font-weight: 700; color: #000000; letter-spacing: 0.15em; text-align: left; }
+  .gioia-course-price { font-size: 18px; font-weight: 500; color: #000000; letter-spacing: 0.08em; text-align: right; white-space: nowrap; }
+  .gioia-price-tax { font-size: 11px; color: #4a4a4a; font-weight: normal; margin-left: 4px; }
+  .gioia-menu-body { display: flex; flex-direction: column; gap: 35px; width: 100%; }
+  .gioia-dish-unit { display: flex; flex-direction: column; gap: 8px; width: 100%; text-align: center; }
+  .gioia-category-header { font-size: 13px; font-weight: 600; color: #4a4a4a; letter-spacing: 0.2em; text-transform: uppercase; }
+  .gioia-dish-title { font-size: 15px; font-weight: 500; color: #000000; letter-spacing: 0.05em; line-height: 1.8; }
+  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #4a4a4a; display: flex; flex-direction: column; gap: 6px; text-align: left; width: fit-content; margin-left: auto; margin-right: auto; }
+  .gioia-option-item { font-size: 14px; color: #222222; }
+  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; }
+</style>
+<div class='gioia-menu-wrapper'>
   
-  <div style='border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end; width: 100%;'>
-    <div style='font-family: "sicyubi-mohitsugyosho", serif; font-size: 22px; color: rgba(212, 175, 55, 0.95); letter-spacing: 0.08em;'>奏(KANADE)</div>
-    <div style='font-family: "Times New Roman", serif; font-size: 19px; color: #d4af37; font-weight: bold; letter-spacing: 0.05em;'>¥12,000<span style='font-size: 11px; color: #9c988d; font-weight: normal; margin-left: 4px;'>(税込・サ別)</span></div>
+  <div class='gioia-course-header'>
+    <div class='gioia-course-title'>奏(KANADE)</div>
+    <div class='gioia-course-price'>¥12,000<span class='gioia-price-tax'>(税込・サ別)</span></div>
   </div>
   
-  <div style='display: flex; flex-direction: column; gap: 16px; width: 100%;'>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Amuse —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>カツオのカルパッチョ マジシャンの曲げたスプーン仕立て</span>
+  <div class='gioia-menu-body'>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Amuse —</span>
+      <span class='gioia-dish-title'>カツオのカルパッチョ マジシャンの曲げたスプーン仕立て</span>
     </div>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Antipasto —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>アンチョビのババロアと小海老、小ヤリイカ、季節野菜のサラダ仕立て</span>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Antipasto —</span>
+      <span class='gioia-dish-title'>アンチョビのババロアと小海老、小ヤリイカ、季節野菜のサラダ仕立て</span>
     </div>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Zuppa —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>ポルチーニ茸のエスプーマスープ</span>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Zuppa —</span>
+      <span class='gioia-dish-title'>ポルチーニ茸のエスプーマスープ</span>
     </div>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Pasta —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>釜揚げしらすと3種のトマトのフェデリーニ クリスピーベーコンとアーモンドのアクセント</span>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Pasta —</span>
+      <span class='gioia-dish-title'>釜揚げしらすと3種のトマトのフェデリーニ クリスピーベーコンとアーモンドのアクセント</span>
     </div>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Carne —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>岩手県産白金豚とリブロースのグリル ゴルゴンゾーラソース</span>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Carne —</span>
+      <span class='gioia-dish-title'>岩手県産白金豚とリブロースのグリル ゴルゴンゾーラソース</span>
     </div>
-    <div style='display: flex; flex-direction: column; gap: 3px; width: 100%;'>
-      <span style='font-size: 10px; color: #9c988d; letter-spacing: 0.15em; text-transform: uppercase;'>— Dolce —</span>
-      <span style='font-size: 15px; color: #ffffff; letter-spacing: 0.05em; line-height: 1.4;'>Gran GIOIA風ティラミス</span>
+    <div class='gioia-dish-unit'>
+      <span class='gioia-category-header'>— Dolce —</span>
+      <span class='gioia-dish-title'>Gran GIOIA風ティラミス</span>
     </div>
   </div>
 </div>
