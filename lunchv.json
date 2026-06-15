@@ -1,5 +1,5 @@
 {
-  "courseName": "彩(IRODORI)",
+  "courseName": "結(MUSUBI)",
   "dishes": [
     {
       "category": "Amuse",
@@ -81,5 +81,6 @@
       "selectCount": 1,
       "options": []
     }
-  ]
+  ],
+  "price": 18000
 }
