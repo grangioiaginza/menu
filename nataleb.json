@@ -1,5 +1,5 @@
 {
-  "courseName": "誉(HOMARE)",
+  "courseName": "クリスマスBコース",
   "dishes": [
     {
       "category": "Amuse",
@@ -81,5 +81,6 @@
       "selectCount": 1,
       "options": []
     }
-  ]
+  ],
+  "price": 25000
 }
