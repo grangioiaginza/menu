@@ -10,9 +10,11 @@
   .gioia-dish-unit { display: flex; flex-direction: column; gap: 8px; width: 100%; text-align: center; }
   .gioia-category-header { font-size: 13px; font-weight: 600; color: #8e8e8e !important; letter-spacing: 0.2em; text-transform: uppercase; }
   .gioia-dish-title { font-size: 14px; font-weight: 400 !important; color: #000000; letter-spacing: 0.05em; line-height: 1.8; overflow-wrap: break-word; word-break: break-all; }
-  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 6px; text-align: left; width: fit-content; margin-left: auto; margin-right: auto; }
-  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; }
-  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; }
+  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%; max-width: 310px; box-sizing: border-box; margin-left: auto; margin-right: auto; }
+  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; display: flex; flex-direction: column; width: 100%; }
+  .gioia-opt-line1 { text-align: left; display: block; width: 100%; line-height: 1.6; }
+  .gioia-opt-line2 { text-align: right; display: block; width: 100%; line-height: 1.6; margin-top: 3px; }
+  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; display: block; text-align: right; margin-top: 5px; }
   /* 📜 ② 下部マージン0px、金額の右側にのみ完全対称で15pxの余白を配置 */
   .gioia-price-footer { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 40px; margin-bottom: 0px !important; width: 100%; text-align: right; padding-right: 15px; box-sizing: border-box; }
   .gioia-course-price { font-size: 14px; font-weight: 500; color: #000000; letter-spacing: 0.08em; white-space: nowrap; }
@@ -35,9 +37,9 @@
       <span class='gioia-category-header'>— Antipasto —</span>
       <span class='gioia-dish-title'>前菜盛り合わせ</span>
       <div class='gioia-prefix-box'>
-        <span class='gioia-option-item'>・生ハムと白桃<br>モッツァレラバッカのマリネ</span>
-        <span class='gioia-option-item'>・千葉県産真蛸のガルシア</span>
-        <span class='gioia-option-item'>・ノルウェーサーモンのミキュイとフェンネルサラダ</span>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・生ハムと白桃</span><span class='gioia-opt-line2'>モッツァレラバッカのマリネ</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・千葉県産真蛸のガルシア</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・ノルウェーサーモンのミキュイとフェンネルサラダ</span></div>
       </div>
     </div>
     <div class='gioia-dish-unit'>
@@ -48,9 +50,9 @@
       <span class='gioia-category-header'>— Pasta —</span>
       <span class='gioia-dish-title'>プリフィックスパスタ</span>
       <div class='gioia-prefix-box'>
-        <span class='gioia-option-item'>・釜揚げしらすと3種のトマトのフェデリーニ<br>クリスピーベーコンとアーモンドのアクセント</span>
-        <span class='gioia-option-item'>・サルディーニャ産からすみと小ヤリイカのニョッキ<br>イカスミのソース</span>
-        <span class='gioia-option-item'>・生雲丹とグアンチャーレのクリームタリオリーニ <span class='gioia-option-price'>(+ ¥500)</span></span>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・釜揚げしらすと3種のトマトのフェデリーニ</span><span class='gioia-opt-line2'>クリスピーベーコンとアーモンドのアクセント</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・サルディーニャ産からすみと小ヤリイカのニョッキ</span><span class='gioia-opt-line2'>イカスミのソース</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・生雲丹とグアンチャーレのクリームタリオリーニ</span><span class='gioia-option-price'>(+ ¥500)</span></div>
       </div>
     </div>
     <div class='gioia-dish-unit'>
