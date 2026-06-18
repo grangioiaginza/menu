@@ -10,13 +10,11 @@
   .gioia-dish-unit { display: flex; flex-direction: column; gap: 8px; width: 100%; text-align: center; }
   .gioia-category-header { font-size: 13px; font-weight: 600; color: #8e8e8e !important; letter-spacing: 0.2em; text-transform: uppercase; }
   .gioia-dish-title { font-size: 14px; font-weight: 400 !important; color: #000000; letter-spacing: 0.05em; line-height: 1.8; overflow-wrap: break-word; word-break: break-all; }
-  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%; max-width: 350px; box-sizing: border-box; margin-left: auto; margin-right: auto; }
-  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; display: flex; flex-direction: column; width: 100%; text-align: left; }
-  .gioia-option-title-text { display: block; width: 100%; text-align: left; line-height: 1.6; overflow-wrap: break-word; word-break: break-all; letter-spacing: -0.04em; }
-  .gioia-option-title-text.is-2lines { text-align-last: right; }
+  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%; max-width: 310px; box-sizing: border-box; margin-left: auto; margin-right: auto; }
+  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; display: flex; flex-direction: column; width: 100%; }
   .gioia-opt-line1 { text-align: left; display: block; width: 100%; line-height: 1.6; }
   .gioia-opt-line2 { text-align: right; display: block; width: 100%; line-height: 1.6; margin-top: 3px; }
-  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; display: block; text-align: right; margin-top: 5px; text-align-last: right; }
+  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; display: block; text-align: right; margin-top: 5px; }
   /* 📜 ② 下部マージン0px、金額の右側にのみ完全対称で15pxの余白を配置 */
   .gioia-price-footer { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 40px; margin-bottom: 0px !important; width: 100%; text-align: right; padding-right: 15px; box-sizing: border-box; }
   .gioia-course-price { font-size: 14px; font-weight: 500; color: #000000; letter-spacing: 0.08em; white-space: nowrap; }
@@ -65,12 +63,3 @@
   </div>
   <div class='gioia-menu-notice'>※季節や当日の仕入れ状況で変更がございます。あしからずご了承下さいませ。</div>
 </div>
-<script>
-(function(){
-  setTimeout(function(){
-    document.querySelectorAll('.gioia-option-title-text').forEach(function(el){
-      if(el.offsetHeight > 25) { el.classList.add('is-2lines'); }
-    });
-  }, 200);
-})();
-</script>
