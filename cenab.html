@@ -1,8 +1,7 @@
-<script type='application/ld+json'>{"@context": "https://schema.org", "@type": "Menu", "name": "誉(HOMARE)", "mainEntityOfPage": "https://gioia.page/menu", "@id": "https://gioia.page/menu#cenab", "offers": {"@type": "Offer", "priceCurrency": "JPY", "price": "15000"}, "provider": {"@type": "Restaurant", "@id": "https://gioia.page/#restaurant"}, "hasMenuSection": {"@type": "MenuSection", "name": "誉(HOMARE)", "hasMenuItem": [{"@type": "MenuItem", "name": "カツオのカルパッチョ マジシャンの曲げたスプーン仕立て"}, {"@type": "MenuItem", "name": "前菜盛り合わせ"}, {"@type": "MenuItem", "name": "ポルチーニ茸のエスプーマスープ"}, {"@type": "MenuItem", "name": "プリフィックスパスタ"}, {"@type": "MenuItem", "name": "愛媛県産みかん鯛のグリル カポナータとバルサミコソース"}, {"@type": "MenuItem", "name": "山形県産黒毛和牛もも肉のカルボナーデ"}, {"@type": "MenuItem", "name": "厳選されたマジシャンによるテーブルマジック"}, {"@type": "MenuItem", "name": "GranGIOIA風ミルフィーユとフランボワーズアイス"}]}}</script>
+<script type='application/ld+json'>{"@context": "https://schema.org", "@type": "Menu", "name": "誉(HOMARE)", "mainEntityOfPage": "https://gioia.page/menu", "@id": "https://gioia.page/menu#cenab", "offers": {"@type": "Offer", "priceCurrency": "JPY", "price": "15000"}, "provider": {"@type": "Restaurant", "@id": "https://gioia.page/#restaurant"}, "hasMenuSection": {"@type": "MenuSection", "name": "誉(HOMARE)", "hasMenuItem": [{"@type": "MenuItem", "name": "カツオのカルパッチョ マジシャンの曲げたスプーンに乗せて"}, {"@type": "MenuItem", "name": "前菜盛り合わせ"}, {"@type": "MenuItem", "name": "ポルチーニ茸のエスプーマスープ"}, {"@type": "MenuItem", "name": "プリフィックスパスタ"}, {"@type": "MenuItem", "name": "愛媛県産みかん鯛のグリル カポナータとバルサミコソース"}, {"@type": "MenuItem", "name": "山形県産黒毛和牛もも肉のカルボナーデ"}, {"@type": "MenuItem", "name": "厳選されたマジシャンによるテーブルマジック"}, {"@type": "MenuItem", "name": "GranGIOIA風ミルフィーユとフランボワーズアイス"}]}}</script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shippori+Mincho:wght@400;500;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Shippori+Mincho:wght=400;500;700;800&display=swap');
   .gioia-menu-wrapper { font-family: 'Playfair Display', 'Shippori Mincho', serif; color: #000000; text-align: center; width: 375px; margin: 0 auto; padding: 10px; }
-  /* 📜 ① 上部マージン0px、左側にのみ15pxの上品な余白を配置 */
   .gioia-course-header { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 0px !important; margin-bottom: 40px; width: 100%; text-align: left; padding-left: 15px; box-sizing: border-box; }
   .gioia-course-title { font-size: 18px; font-weight: 400 !important; color: #000000; letter-spacing: 0.15em; }
   .gioia-title-en { font-size: 15px !important; font-family: 'Playfair Display', serif !important; }
@@ -10,38 +9,32 @@
   .gioia-dish-unit { display: flex; flex-direction: column; gap: 8px; width: 100%; text-align: center; }
   .gioia-category-header { font-size: 13px; font-weight: 600; color: #8e8e8e !important; letter-spacing: 0.2em; text-transform: uppercase; }
   .gioia-dish-title { font-size: 14px; font-weight: 400 !important; color: #000000; letter-spacing: 0.05em; line-height: 1.8; overflow-wrap: break-word; word-break: break-all; }
-  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%; max-width: 350px; box-sizing: border-box; margin-left: auto; margin-right: auto; }
-  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; display: flex; flex-direction: column; width: 100%; text-align: left; }
-  .gioia-option-title-text { display: block; width: 100%; text-align: left; line-height: 1.6; overflow-wrap: break-word; word-break: break-all; letter-spacing: -0.04em; }
-  .gioia-option-title-text.is-2lines { text-align-last: right; }
+  .gioia-prefix-box { margin-top: 8px; padding-left: 15px; border-left: 1px solid #8e8e8e; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%; max-width: 310px; box-sizing: border-box; margin-left: auto; margin-right: auto; }
+  .gioia-option-item { font-size: 14px; color: #222222; font-weight: 400 !important; display: flex; flex-direction: column; width: 100%; }
   .gioia-opt-line1 { text-align: left; display: block; width: 100%; line-height: 1.6; }
   .gioia-opt-line2 { text-align: right; display: block; width: 100%; line-height: 1.6; margin-top: 3px; }
-  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; display: block; text-align: right; margin-top: 5px; text-align-last: right; }
-  /* 📜 ② 下部マージン0px、金額の右側にのみ完全対称で15pxの余白を配置 */
+  .gioia-option-price { color: #000000; font-size: 12px; font-weight: bold; display: block; text-align: right; margin-top: 5px; }
   .gioia-price-footer { border-bottom: 1px solid #000000; padding-bottom: 14px; margin-top: 40px; margin-bottom: 0px !important; width: 100%; text-align: right; padding-right: 15px; box-sizing: border-box; }
   .gioia-course-price { font-size: 14px; font-weight: 500; color: #000000; letter-spacing: 0.08em; white-space: nowrap; }
   .gioia-price-tax { font-size: 12px; color: #8e8e8e; font-weight: normal; margin-left: 4px; }
-  .gioia-menu-body { display: flex; flex-direction: column; gap: 35px; width: 100%; }
   .gioia-menu-notice { font-size: 9px; color: #8e8e8e; font-weight: 400 !important; text-align: center; margin-top: 15px; width: 100%; letter-spacing: 0.05em; line-height: 1.6; }
 </style>
 <div class='gioia-menu-wrapper'>
-  
   <div class='gioia-course-header'>
     <div class='gioia-course-title'>誉<span class="gioia-title-en">(HOMARE)</span></div>
   </div>
-  
   <div class='gioia-menu-body'>
     <div class='gioia-dish-unit'>
       <span class='gioia-category-header'>— Amuse —</span>
-      <span class='gioia-dish-title'>カツオのカルパッチョ<br>マジシャンの曲げたスプーン仕立て</span>
+      <span class='gioia-dish-title'>カツオのカルパッチョ<br>マジシャンの曲げたスプーンに乗せて</span>
     </div>
     <div class='gioia-dish-unit'>
       <span class='gioia-category-header'>— Antipasto —</span>
       <span class='gioia-dish-title'>前菜盛り合わせ</span>
       <div class='gioia-prefix-box'>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・生ハムと白桃 モッツァレラバッカのマリネ</span></div>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・千葉県産真蛸のガルシア</span></div>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・ノルウェーサーモンのミキュイとフェンネルサラダ</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・生ハムと白桃</span><span class='gioia-opt-line2'>モッツァレラバッカのマリネ</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・千葉県産真蛸のガルシア</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・ノルウェーサーモンのミキュイとフェンネルサラダ</span></div>
       </div>
     </div>
     <div class='gioia-dish-unit'>
@@ -52,9 +45,9 @@
       <span class='gioia-category-header'>— Pasta —</span>
       <span class='gioia-dish-title'>プリフィックスパスタ</span>
       <div class='gioia-prefix-box'>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・釜揚げしらすと3種のトマトのフェデリーニ クリスピーベーコンとアーモンドのアクセント</span></div>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・サルディーニャ産からすみと小ヤリイカのニョッキ イカスミのソース</span></div>
-        <div class='gioia-option-item'><span class='gioia-option-title-text'>・生雲丹とグアンチャーレのクリームタリオリーニ</span><span class='gioia-option-price'>(+ ¥500)</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・釜揚げしらすと3種のトマトのフェデリーニ</span><span class='gioia-opt-line2'>クリスピーベーコンとアーモンドのアクセント</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・サルディーニャ産からすみと小ヤリイカのニョッキ</span><span class='gioia-opt-line2'>イカスミのソース</span></div>
+        <div class='gioia-option-item'><span class='gioia-opt-line1'>・生雲丹とグアンチャーレのクリームタリオリーニ</span><span class='gioia-option-price'>(+ ¥500)</span></div>
       </div>
     </div>
     <div class='gioia-dish-unit'>
@@ -79,12 +72,3 @@
   </div>
   <div class='gioia-menu-notice'>※季節や当日の仕入れ状況で変更がございます。あしからずご了承下さいませ。</div>
 </div>
-<script>
-(function(){
-  setTimeout(function(){
-    document.querySelectorAll('.gioia-option-title-text').forEach(function(el){
-      if(el.offsetHeight > 25) { el.classList.add('is-2lines'); }
-    });
-  }, 200);
-})();
-</script>
