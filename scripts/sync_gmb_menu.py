@@ -7,7 +7,7 @@ import requests
 CLIENT_ID = os.environ.get("GMB_CLIENT_ID")
 CLIENT_SECRET = os.environ.get("GMB_CLIENT_SECRET")
 REFRESH_TOKEN = os.environ.get("GMB_REFRESH_TOKEN")
-LOCATION_ID = os.environ.get("GMB_LOCATION_ID")  # 例: locations/1234567890
+LOCATION_ID = os.environ.get("GMB_LOCATION_ID")  # 例: locations/1234567890123456789
 
 
 def get_access_token():
@@ -19,22 +19,10 @@ def get_access_token():
         "grant_type": "refresh_token",
     }
     res = requests.post(token_url, data=data)
-    res.raise_for_status()
-    return res.json()["access_token"]
-
-
-def get_account_id(access_token):
-    """Googleアカウントに紐づく Account ID (accounts/xxx) を自動取得"""
-    url = "https://mybusinessaccountmanagement.googleapis.com/v1/accounts"
-    headers = {"Authorization": f"Bearer {access_token}"}
-    res = requests.get(url, headers=headers)
-    res.raise_for_status()
-    accounts = res.json().get("accounts", [])
-    if not accounts:
-        print("❌ Google Business Profile のアカウントが見つかりません。")
+    if res.status_code != 200:
+        print(f"❌ トークン取得エラー (Status {res.status_code}): {res.text}")
         sys.exit(1)
-    # 最初のアカウントIDを返す
-    return accounts[0]["name"]
+    return res.json()["access_token"]
 
 
 def parse_json_file(file_path):
@@ -57,21 +45,23 @@ def parse_json_file(file_path):
         desc = item.get("description") or item.get("detail") or item.get("lead") or ""
         price_val = item.get("price", 0)
 
+        # 価格の数値をクレンジング (文字列の数字にする)
         if isinstance(price_val, (int, float)):
-            units = int(price_val)
+            units = str(int(price_val))
         elif isinstance(price_val, str):
-            units = int("".join(filter(str.isdigit, price_val)) or "0")
+            units = "".join(filter(str.isdigit, price_val)) or "0"
         else:
-            units = 0
+            units = "0"
 
         if name:
-            # v4 API の正しいフォーマット（labelsはオブジェクト、価格は attributes 内）
             parsed_items.append({
-                "labels": {
-                    "displayName": name[:140],
-                    "description": desc[:1000],
-                    "languageCode": "ja"
-                },
+                "labels": [
+                    {
+                        "displayName": name[:140],
+                        "description": desc[:1000],
+                        "languageCode": "ja"
+                    }
+                ],
                 "attributes": {
                     "price": {
                         "currencyCode": "JPY",
@@ -90,36 +80,45 @@ def build_menu_payload():
     cena_files = sorted(glob.glob("cena*.json"))
     cena_items = []
     for fpath in cena_files:
-        cena_items.extend(parse_json_file(fpath))
+        items = parse_json_file(fpath)
+        print(f"📖 {fpath} から {len(items)} 件のアイテムを読み込みました")
+        cena_items.extend(items)
 
     if cena_items:
         sections.append({
-            "labels": {
-                "displayName": "ディナーコース (Dinner)",
-                "languageCode": "ja"
-            },
+            "labels": [
+                {
+                    "displayName": "ディナーコース (Dinner)",
+                    "languageCode": "ja"
+                }
+            ],
             "items": cena_items
         })
 
     # 2. ドリンク
     if os.path.exists("drink.json"):
         drink_items = parse_json_file("drink.json")
+        print(f"🍷 drink.json から {len(drink_items)} 件のドリンクを読み込みました")
         if drink_items:
             sections.append({
-                "labels": {
-                    "displayName": "ドリンク (Drinks)",
-                    "languageCode": "ja"
-                },
+                "labels": [
+                    {
+                        "displayName": "ドリンク (Drinks)",
+                        "languageCode": "ja"
+                    }
+                ],
                 "items": drink_items
             })
 
     return {
         "menus": [
             {
-                "labels": {
-                    "displayName": "Gran GIOIA メニュー",
-                    "languageCode": "ja"
-                },
+                "labels": [
+                    {
+                        "displayName": "Gran GIOIA メニュー",
+                        "languageCode": "ja"
+                    }
+                ],
                 "sections": sections,
             }
         ]
@@ -127,16 +126,15 @@ def build_menu_payload():
 
 
 def sync_to_gmb():
-    # 1. トークンとアカウントIDの取得
     access_token = get_access_token()
-    account_name = get_account_id(access_token)
     
-    # 2. API v4 用の正しいURLを構築 (accounts/xxx/locations/yyy/foodMenus)
-    # LOCATION_ID が "locations/123" などの形式であることを考慮して結合
-    location_id_clean = LOCATION_ID.replace("locations/", "")
-    full_resource_name = f"{account_name}/locations/{location_id_clean}/foodMenus"
-    
-    url = f"https://mybusiness.googleapis.com/v4/{full_resource_name}"
+    # LOCATION_ID の表記揺れ（locations/有無）を自動補正
+    loc_id_clean = LOCATION_ID.strip()
+    if not loc_id_clean.startswith("locations/"):
+        loc_id_clean = f"locations/{loc_id_clean}"
+
+    # My Business Business Information API v1 の標準エンドポイント
+    url = f"https://mybusinessbusinessinformation.googleapis.com/v1/{loc_id_clean}/foodMenus"
     
     payload = build_menu_payload()
     headers = {
@@ -144,15 +142,17 @@ def sync_to_gmb():
         "Content-Type": "application/json",
     }
 
-    # 3. v4 API へ PATCH 送信
+    print(f"🚀 送信先URL: {url}")
+    print(f"📦 送信データ概要: セクション数 {len(payload['menus'][0]['sections'])}")
+
     response = requests.patch(url, headers=headers, json=payload)
 
     if response.status_code == 200:
-        print("✅ Google Business Profile へのメニュー完全同期が完了しました！")
+        print("🎉【大成功】Google Business Profile へのメニュー同期が完了しました！")
     else:
-        print(f"❌ 同期エラー (Status: {response.status_code})")
-        print(response.text)
-        sys.exit(1) # これを入れることで失敗時はGitHub Actionsが赤色で止まります
+        print(f"\n❌ エラー発生 (Status Code: {response.status_code})")
+        print(f"📄 Googleからの返答詳細:\n{response.text}\n")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
