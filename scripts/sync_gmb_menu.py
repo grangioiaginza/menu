@@ -25,34 +25,6 @@ def get_access_token():
     return res.json()["access_token"]
 
 
-def get_account_name(access_token):
-    """Google Business Profile のアカウントID (accounts/XXXXXXXX) を自動取得"""
-    url = "https://mybusinessaccountmanagement.googleapis.com/v1/accounts"
-    headers = {"Authorization": f"Bearer {access_token}"}
-    res = requests.get(url, headers=headers)
-
-    if res.status_code == 403:
-        print(
-            "\n❌【要設定】Google Cloud Console で 'My Business Account Management"
-            " API' を有効化してください。"
-        )
-        print(
-            "GCP (https://console.cloud.google.com/) ➔ ライブラリ ➔ 'My Business"
-            " Account Management API' を検索して「有効にする」を押します。\n"
-        )
-        sys.exit(1)
-    elif res.status_code != 200:
-        print(f"❌ アカウントID取得エラー (Status {res.status_code}): {res.text}")
-        sys.exit(1)
-
-    accounts = res.json().get("accounts", [])
-    if not accounts:
-        print("❌ Google Business Profile のアカウントが見つかりませんでした。")
-        sys.exit(1)
-
-    return accounts[0]["name"]  # 例: "accounts/10987654321"
-
-
 def clean_price(price_val):
     """'2,000-' や 18000 などの価格表現を整数数値へ安全に変換"""
     if isinstance(price_val, (int, float)):
@@ -64,7 +36,7 @@ def clean_price(price_val):
 
 
 def parse_course_json(file_path):
-    """cena*.json などのコース料理データから「お品書き構成」を抽出して作成"""
+    """cena*.json などのコース料理データから「お品書き構成」を抽出"""
     if not os.path.exists(file_path):
         return []
 
@@ -73,7 +45,7 @@ def parse_course_json(file_path):
 
     parsed_items = []
 
-    # パターン1: courseName, price, dishes を持つの構造（ご共有いただいたサンプル形式）
+    # パターン1: courseName, price, dishes を持つ構造
     if isinstance(data, dict) and "courseName" in data:
         course_name = data.get("courseName", "")
         price = clean_price(data.get("price", 0))
@@ -92,7 +64,6 @@ def parse_course_json(file_path):
                     o.get("title", "") for o in options if o.get("title")
                 ]
                 if opt_titles:
-                    # 選択肢を最大3つまで概要に表示
                     opts_str = ", ".join(opt_titles[:3])
                     line += f"（{opts_str} 等から選択）"
             dish_lines.append(line)
@@ -113,7 +84,7 @@ def parse_course_json(file_path):
                 },
             })
 
-    # パターン2: 汎用配列構造（その他のケース用フォールバック）
+    # パターン2: 汎用配列構造（フォールバック）
     else:
         raw_items = data if isinstance(data, list) else data.get("items", [data])
         for item in raw_items:
@@ -238,10 +209,11 @@ def build_menu_payload():
 
 def sync_to_gmb():
     access_token = get_access_token()
-    account_name = get_account_name(access_token)
 
     loc_id_clean = LOCATION_ID.replace("locations/", "").strip()
-    url = f"https://mybusiness.googleapis.com/v4/{account_name}/locations/{loc_id_clean}/foodMenus"
+    
+    # ワイルドカード accounts/- を使用してアカウントID取得処理を完全にバイパス
+    url = f"https://mybusiness.googleapis.com/v4/accounts/-/locations/{loc_id_clean}/foodMenus"
 
     payload = build_menu_payload()
     headers = {
@@ -249,7 +221,6 @@ def sync_to_gmb():
         "Content-Type": "application/json",
     }
 
-    print(f"🚀 送信先アカウント: {account_name}")
     print(f"🚀 送信先URL: {url}")
     print(f"📦 総セクション数: {len(payload['menus'][0]['sections'])} 個")
 
