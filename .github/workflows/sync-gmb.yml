@@ -1,0 +1,35 @@
+name: Sync Menu to Google Business Profile
+
+on:
+  push:
+    paths:
+      - 'cena*.json'
+      - 'drink.json'
+      # - 'lunch*.json'  # 🌟 ランチ開始時にコメントアウト（#）を解除してください
+  workflow_dispatch: # GitHubのWeb画面から手動でボタン実行もできるようにする設定
+
+jobs:
+  sync-gmb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run GMB Sync Script
+        env:
+          GMB_CLIENT_ID: ${{ secrets.GMB_CLIENT_ID }}
+          GMB_CLIENT_SECRET: ${{ secrets.GMB_CLIENT_SECRET }}
+          GMB_REFRESH_TOKEN: ${{ secrets.GMB_REFRESH_TOKEN }}
+          GMB_LOCATION_ID: ${{ secrets.GMB_LOCATION_ID }}
+        run: python scripts/sync_gmb_menu.py
