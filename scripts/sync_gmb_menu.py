@@ -45,7 +45,6 @@ def parse_course_json(file_path):
 
     parsed_items = []
 
-    # パターン1: courseName, price, dishes を持つ構造
     if isinstance(data, dict) and "courseName" in data:
         course_name = data.get("courseName", "")
         price = clean_price(data.get("price", 0))
@@ -83,8 +82,6 @@ def parse_course_json(file_path):
                     "price": {"currencyCode": "JPY", "units": price}
                 },
             })
-
-    # パターン2: 汎用配列構造（フォールバック）
     else:
         raw_items = data if isinstance(data, list) else data.get("items", [data])
         for item in raw_items:
@@ -166,7 +163,7 @@ def parse_drink_json():
     return drink_sections
 
 
-def build_menu_payload():
+def build_menu_payload(loc_id_clean):
     sections = []
 
     # 1. ディナーコース (CENA)
@@ -185,7 +182,7 @@ def build_menu_payload():
             "items": cena_items,
         })
 
-    # 2. ドリンク (DRINK - カテゴリーごとにセクション分割)
+    # 2. ドリンク (DRINK)
     drink_sections = parse_drink_json()
     total_drinks = sum(len(s["items"]) for s in drink_sections)
     print(
@@ -195,7 +192,9 @@ def build_menu_payload():
 
     sections.extend(drink_sections)
 
+    # My Business Business Information API v1 の最新構造規格
     return {
+        "name": f"locations/{loc_id_clean}/foodMenus",
         "menus": [
             {
                 "labels": [
@@ -203,7 +202,7 @@ def build_menu_payload():
                 ],
                 "sections": sections,
             }
-        ]
+        ],
     }
 
 
@@ -211,11 +210,11 @@ def sync_to_gmb():
     access_token = get_access_token()
 
     loc_id_clean = LOCATION_ID.replace("locations/", "").strip()
-    
-    # ワイルドカード accounts/- を使用してアカウントID取得処理を完全にバイパス
-    url = f"https://mybusiness.googleapis.com/v4/accounts/-/locations/{loc_id_clean}/foodMenus"
 
-    payload = build_menu_payload()
+    # My Business Business Information API v1 の正解エンドポイント + updateMask
+    url = f"https://mybusinessbusinessinformation.googleapis.com/v1/locations/{loc_id_clean}/foodMenus?updateMask=menus"
+
+    payload = build_menu_payload(loc_id_clean)
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json",
