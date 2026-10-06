@@ -1,5 +1,5 @@
 {
-  "courseName": "ラガッツォ",
+  "courseName": "Ragazzo（ラガッツォ）",
   "dishes": [
     {
       "category": "Amuse",
@@ -75,11 +75,11 @@
     },
     {
       "category": "Dolce",
-      "title": "本日のデザート",
       "desc": "甘みと酸味が美しく調和する、大人顔負けの本格的なドルチェ。\n銀座で過ごしたご家族の特別な時間に、美しい余韻を添えて締めくくります。",
       "isPrefix": false,
+      "options": [],
       "selectCount": 1,
-      "options": []
+      "title": "本日のデザート"
     }
   ],
   "price": 6000
